@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Hewing AI | AI Business Partner for Content Creators</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    "JetBrains Mono", "Fira Code", "Consolas", monospace;
+                background: #0a0a0a;
+                color: #e0e0e0;
+                line-height: 1.6;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            /* Navigation */
+            nav {
+                background: rgba(20, 20, 20, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 20px 0;
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+                border-bottom: 1px solid #333;
+            }
+
+            nav .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            nav .logo {
+                font-size: 24px;
+                font-weight: bold;
+                color: #00ff88;
+                text-decoration: none;
+            }
+
+            nav ul {
+                display: flex;
+                list-style: none;
+                gap: 30px;
+            }
+
+            nav a {
+                color: #e0e0e0;
+                text-decoration: none;
+                transition: color 0.3s;
+                font-size: 14px;
+            }
+
+            nav a:hover {
+                color: #00ff88;
+            }
+
+            /* Hero Section */
+            .hero {
+                padding: 120px 0 80px;
+                text-align: center;
+                background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            }
+
+            .hero h1 {
+                font-size: 56px;
+                margin-bottom: 20px;
+                background: linear-gradient(135deg, #00ff88 0%, #00d4ff 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .hero p {
+                font-size: 20px;
+                color: #b0b0b0;
+                max-width: 700px;
+                margin: 0 auto 40px;
+            }
+
+            .cta-button {
+                display: inline-block;
+                padding: 15px 40px;
+                background: linear-gradient(135deg, #00ff88 0%, #00d4ff 100%);
+                color: #0a0a0a;
+                text-decoration: none;
+                border-radius: 8px;
+                font-weight: bold;
+                transition:
+                    transform 0.3s,
+                    box-shadow 0.3s;
+                font-size: 16px;
+            }
+
+            .cta-button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+            }
+
+            /* Section Styles */
+            section {
+                padding: 80px 0;
+            }
+
+            .section-title {
+                font-size: 42px;
+                margin-bottom: 20px;
+                text-align: center;
+                color: #00ff88;
+            }
+
+            .section-subtitle {
+                text-align: center;
+                font-size: 18px;
+                color: #b0b0b0;
+                max-width: 800px;
+                margin: 0 auto 60px;
+            }
+
+            /* Why Us Section */
+            .why-us {
+                background: #0f0f0f;
+            }
+
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+                margin-top: 40px;
+            }
+
+            .feature-card {
+                background: rgba(30, 30, 30, 0.6);
+                padding: 40px;
+                border-radius: 12px;
+                border: 1px solid #333;
+                transition:
+                    transform 0.3s,
+                    border-color 0.3s;
+            }
+
+            .feature-card:hover {
+                transform: translateY(-5px);
+                border-color: #00ff88;
+            }
+
+            .feature-card h3 {
+                color: #00ff88;
+                font-size: 24px;
+                margin-bottom: 15px;
+            }
+
+            .feature-card p {
+                color: #b0b0b0;
+                font-size: 15px;
+            }
+
+            /* Why AI Section */
+            .why-ai {
+                background: linear-gradient(135deg, #1a1a2e 0%, #0a0a0a 100%);
+            }
+
+            .ai-benefits {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 25px;
+                margin-top: 40px;
+            }
+
+            .benefit-item {
+                background: rgba(0, 255, 136, 0.05);
+                padding: 30px;
+                border-radius: 10px;
+                border-left: 4px solid #00ff88;
+            }
+
+            .benefit-item h4 {
+                color: #00d4ff;
+                font-size: 20px;
+                margin-bottom: 12px;
+            }
+
+            .benefit-item p {
+                color: #b0b0b0;
+                font-size: 14px;
+            }
+
+            /* Research Section */
+            .research {
+                background: #0f0f0f;
+            }
+
+            .research-content {
+                max-width: 900px;
+                margin: 0 auto;
+                background: rgba(30, 30, 30, 0.6);
+                padding: 50px;
+                border-radius: 12px;
+                border: 1px solid #333;
+            }
+
+            .research-content h3 {
+                color: #00ff88;
+                font-size: 28px;
+                margin-bottom: 20px;
+            }
+
+            .research-content p {
+                color: #b0b0b0;
+                margin-bottom: 20px;
+                font-size: 15px;
+            }
+
+            .research-stats {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 30px;
+                margin-top: 40px;
+            }
+
+            .stat {
+                text-align: center;
+            }
+
+            .stat-number {
+                font-size: 48px;
+                color: #00ff88;
+                font-weight: bold;
+                display: block;
+            }
+
+            .stat-label {
+                color: #b0b0b0;
+                font-size: 14px;
+                margin-top: 10px;
+            }
+
+            /* Portfolio Section */
+            .portfolio {
+                background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            }
+
+            .portfolio-content {
+                max-width: 900px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .portfolio-content p {
+                color: #b0b0b0;
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+
+            /* Contact Section */
+            .contact {
+                background: #0a0a0a;
+                padding: 60px 0;
+                border-top: 1px solid #333;
+            }
+
+            .contact-content {
+                text-align: center;
+            }
+
+            .contact h2 {
+                font-size: 36px;
+                color: #00ff88;
+                margin-bottom: 30px;
+            }
+
+            .social-links {
+                display: flex;
+                justify-content: center;
+                gap: 30px;
+                margin-top: 30px;
+                flex-wrap: wrap;
+            }
+
+            .social-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 15px 30px;
+                background: rgba(30, 30, 30, 0.8);
+                border: 1px solid #333;
+                border-radius: 8px;
+                color: #e0e0e0;
+                text-decoration: none;
+                transition: all 0.3s;
+                font-size: 14px;
+            }
+
+            .social-link:hover {
+                border-color: #00ff88;
+                background: rgba(0, 255, 136, 0.1);
+                transform: translateY(-2px);
+            }
+
+            .email {
+                color: #00d4ff;
+                font-size: 18px;
+                margin-top: 20px;
+                display: block;
+            }
+
+            /* Footer */
+            footer {
+                background: #0a0a0a;
+                padding: 30px 0;
+                text-align: center;
+                border-top: 1px solid #333;
+                color: #666;
+                font-size: 13px;
+            }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+                .hero h1 {
+                    font-size: 36px;
+                }
+
+                .hero p {
+                    font-size: 16px;
+                }
+
+                nav ul {
+                    gap: 15px;
+                    font-size: 12px;
+                }
+
+                .section-title {
+                    font-size: 32px;
+                }
+
+                .features-grid,
+                .ai-benefits {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav>
+            <div class="container">
+                <a href="#" class="logo">Hewing AI</a>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#why-us">Why Us</a></li>
+                    <li><a href="#why-ai">Why AI</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <h1>Your AI Business Partner</h1>
+                <p>
+                    Helping content creators grow their audience and connecting
+                    businesses with the customers who need them—from realtors to
+                    cafes and beyond.
+                </p>
+                <a href="#contact" class="cta-button">Get Started</a>
+            </div>
+        </section>
+
+        <!-- Why Us Section -->
+        <section class="why-us" id="why-us">
+            <div class="container">
+                <h2 class="section-title">Why Choose Us?</h2>
+                <p class="section-subtitle">
+                    Whether you're a creator or a local business, we help you
+                    reach the right people
+                </p>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>For Content Creators</h3>
+                        <p>
+                            Grow your views, optimize your content, and connect
+                            with professional editors. AI-powered strategies for
+                            thumbnails, titles, and posting times that actually
+                            work.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>For Local Businesses</h3>
+                        <p>
+                            Connect realtors with homebuyers, cafes with coffee
+                            lovers, and any service with the customers who need
+                            them. Smart matching powered by AI.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>Smart Networking</h3>
+                        <p>
+                            AI that understands your needs and connects you with
+                            the right people. Whether you need an editor, a
+                            client, or a collaborator—we find them.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>Audience & Customer Growth</h3>
+                        <p>
+                            Data-driven insights to help creators grow their
+                            channels and businesses attract more customers. Know
+                            what works and scale what matters.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>Visibility Optimization</h3>
+                        <p>
+                            Get found by the people looking for you. SEO, social
+                            media, and local search optimization that puts you
+                            in front of your ideal audience or customers.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>24/7 AI Support</h3>
+                        <p>
+                            Whether you need content ideas, marketing
+                            strategies, or help connecting with clients—get
+                            instant AI assistance whenever you need it.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why AI Section -->
+        <section class="why-ai" id="why-ai">
+            <div class="container">
+                <h2 class="section-title">Why AI?</h2>
+                <p class="section-subtitle">
+                    Artificial Intelligence isn't just the future—it's the
+                    present competitive advantage
+                </p>
+
+                <div class="ai-benefits">
+                    <div class="benefit-item">
+                        <h4>Save Time</h4>
+                        <p>
+                            Automate repetitive tasks and focus on what truly
+                            matters—your creative vision and business growth.
+                        </p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <h4>Scale Effortlessly</h4>
+                        <p>
+                            Handle 10x the workload without 10x the effort. AI
+                            scales with your ambitions without burning you out.
+                        </p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <h4>Stay Consistent</h4>
+                        <p>
+                            Maintain quality and presence across all platforms,
+                            even when you're offline or focusing elsewhere.
+                        </p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <h4>Personalize at Scale</h4>
+                        <p>
+                            Create personalized experiences for thousands while
+                            maintaining authentic connections with your
+                            audience.
+                        </p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <h4>Reduce Costs</h4>
+                        <p>
+                            Achieve more with less. AI assistance is a fraction
+                            of the cost of hiring a full team while delivering
+                            comparable results.
+                        </p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <h4>Stay Competitive</h4>
+                        <p>
+                            Your competitors are already using AI. Don't get
+                            left behind—lead the way with smarter tools and
+                            strategies.
+                        </p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <h4>Learn & Adapt</h4>
+                        <p>
+                            AI learns from your successes and failures,
+                            continuously improving your approach based on real
+                            data.
+                        </p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <h4>Global Reach</h4>
+                        <p>
+                            Break language and time zone barriers. AI helps you
+                            connect with audiences worldwide, 24/7.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Section -->
+        <section class="research" id="research">
+            <div class="container">
+                <h2 class="section-title">Real Impact, Real Results</h2>
+                <p class="section-subtitle">
+                    Evidence-based AI solutions backed by research and proven
+                    outcomes
+                </p>
+
+                <div class="research-content">
+                    <h3>How AI Transforms Businesses</h3>
+                    <p>
+                        Our approach is grounded in real-world data and proven
+                        methodologies. Studies consistently show that businesses
+                        leveraging AI for content creation and outreach see
+                        measurable improvements across key metrics.
+                    </p>
+
+                    <p>
+                        Content creators using AI assistance report significant
+                        time savings—up to 40% reduction in content production
+                        time while maintaining or improving quality. This
+                        efficiency gain allows creators to focus on strategy,
+                        audience engagement, and creative direction.
+                    </p>
+
+                    <p>
+                        For outreach and networking, AI-powered personalization
+                        has shown to increase response rates by 2-3x compared to
+                        generic messaging. The key is intelligent automation
+                        that maintains authenticity while operating at scale.
+                    </p>
+
+                    <p>
+                        Social media management powered by AI analytics helps
+                        identify optimal posting times, content types, and
+                        engagement strategies, leading to improved reach and
+                        audience growth rates of 50-200% year-over-year.
+                    </p>
+
+                    <div class="research-stats">
+                        <div class="stat">
+                            <span class="stat-number">40%</span>
+                            <span class="stat-label">Time Saved</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">3x</span>
+                            <span class="stat-label"
+                                >Better Response Rates</span
+                            >
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">150%</span>
+                            <span class="stat-label">Average Growth</span>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 40px">
+                        These aren't just numbers—they represent real creators
+                        and businesses who've partnered with AI to amplify their
+                        impact, reach more people, and build sustainable growth.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section class="portfolio" id="portfolio">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+
+                <div class="portfolio-content">
+                    <p>
+                        I'm a passionate advocate for the intersection of human
+                        creativity and artificial intelligence. With years of
+                        experience in digital marketing, content creation, and
+                        AI implementation, I've helped dozens of creators and
+                        businesses transform their workflows.
+                    </p>
+
+                    <p>
+                        My mission is to democratize access to powerful AI
+                        tools—making sophisticated technology accessible to solo
+                        creators, small teams, and growing businesses who want
+                        to compete with the big players.
+                    </p>
+
+                    <p>
+                        I believe the future belongs to those who can seamlessly
+                        blend human intuition with AI efficiency. Let me show
+                        you how.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="contact-content">
+                    <h2>Let's Connect</h2>
+                    <p style="color: #b0b0b0; font-size: 16px">
+                        Ready to transform your business with AI? Reach out and
+                        let's discuss how we can work together.
+                    </p>
+
+                    <a href="mailto:snhewing@hewingai.com" class="email"
+                        >snhewing@hewingai.com</a
+                    >
+
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <span>📧</span> Email
+                        </a>
+                        <a href="#" class="social-link">
+                            <span>💼</span> LinkedIn
+                        </a>
+                        <a href="#" class="social-link">
+                            <span>🐦</span> Twitter/X
+                        </a>
+                        <a href="#" class="social-link">
+                            <span>📸</span> Instagram
+                        </a>
+                        <a href="#" class="social-link">
+                            <span>▶️</span> YouTube
+                        </a>
+                        <a href="#" class="social-link">
+                            <span>💬</span> Discord
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <p>&copy; 2024 Hewing AI. All rights reserved.</p>
+            </div>
+        </footer>
+    </body>
+</html>
